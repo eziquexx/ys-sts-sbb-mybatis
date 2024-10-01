@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>메세지 목록 Message List</title>
+</head>
+<body>
+<!-- 비어 있는 messages div -->
+<h1>Message List</h1>
+<div id="loading_id" class="loading">Loading...</div>
+<div id="error_id" class="error">fetching 과정에서 오류가 발생했습니다.</div>
+<ul id="messageList_id"></ul>
+
+<!-- 자바스크립트로 fetch를 이용해 /messages/api 결과를 위 div에 담는다. -->
+<script th:inline="javascript">
+function fetchMessages() {
+	const messageList = document.getElementById('messageList_id');
+	const loading = document.getElementById('loading_id');
+	const error = document.getElementById('error_id');
+	
+	loading.style.display = 'block';
+	error.style.display = 'none';
+	messageList.innerHTML = '';
+	
+	fetch('/messages/api')
+			.then(response => {
+				//응답 결과를 json으로 변환
+				if(!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				//json형태로 응답
+				return response.json(); 
+			})
+			.then(messages => {
+				console.log(messages);
+				// messages 응답 받으면 loading은 display: none;
+				loading.style.display = 'none';
+				
+				// messages 각각 순환. msg 매개변수로
+				messages.forEach(msg => {
+					// li ele 생성
+					const li = document.createElement('li');
+					// li textContent에는 msg의 message와 id 값 담기
+					li.textContent = `${msg.message} (${msg.id})`;
+					//messageList 변수에 li appendchild. 자식으로 추가
+					messageList.appendChild(li);
+				})
+			})
+			.catch(err => {
+				// error가 되면 콘솔창에 err 메세지 보여주기
+				console.error('Fetch error:', err);
+				// const loading은 display none 시키기
+				loading.style.display = 'none';
+				// const error은 display block 시키기
+				error.style.display = 'block';
+			})
+}
+fetchMessages();
+/*]]>*/
+</script>
+</body>
+</html>
