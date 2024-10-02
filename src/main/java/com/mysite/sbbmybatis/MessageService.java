@@ -26,4 +26,6 @@ public class MessageService {
 	public List<Message> getMessageLimit10() {
 		return messageMapper.getMessageLimit10();
 	}
+	
+	
 }
