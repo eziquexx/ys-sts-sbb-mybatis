@@ -4,5 +4,7 @@
 <mapper namespace="com.mysite.sbbmybatis.UserMapper">
     <select id="getUserByUsername" resultType="com.mysite.sbbmybatis.User">
         SELECT * FROM users WHERE username = #{username}
+        <!-- created_at과 updated_at을 createAt, updatedAt 필드를 직접 매핑시켜준다.(내가 String타입으로 만들었으니까 mybatis가 자동으로 문자열로 매핑시켜준다.  -->
+    	<!-- SELECT id, username, psw, created_at AS createdAt, updated_at AS updatedAt FROM users WHERE username = #{username} -->
     </select>
 </mapper>

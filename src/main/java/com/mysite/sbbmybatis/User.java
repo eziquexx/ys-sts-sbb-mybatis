@@ -1,6 +1,7 @@
 package com.mysite.sbbmybatis;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class User {
 	private Integer id;
@@ -39,6 +40,7 @@ public class User {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
 	
 	
 }

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h1>hong</h1>
+<h1 th:text="${user.username} + '님 로그인하셨습니다.'"></h1>
+<p th:text="${user.username} + '님의 비밀번호는 ' + ${user.psw} + '입니다.'"></p>
+<p th:text="${user.username} + '님의 가입 날짜는 ' + ${user.createdAt} + '입니다.'"></p>
+<p th:text="${user.username} + '님의 비밀번호 수정 날짜는 ' + ${user.updatedAt} + '입니다.'"></p>
 </body>
 </html>
