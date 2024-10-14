@@ -21,9 +21,11 @@
             document.getElementById('loginForm').reset();
 			
 			// 로그인 성공 시 detail 페이지로 이동
-			window.location.href = `/user/${user.username}`
+			window.location.href = `/user/${user.username}`;
+
         } else {
             alert('메시지 생성에 실패했습니다.');
+			window.location.href = `/user/login`;
         }
     })
     .catch(error => {

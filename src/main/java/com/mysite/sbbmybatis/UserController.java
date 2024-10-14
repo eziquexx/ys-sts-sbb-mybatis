@@ -23,11 +23,9 @@ public class UserController {
 	
 	
 	@PostMapping("/user/login")
-//	@ResponseBody
 	public void login2(@RequestBody User user) {
 		User newUser = user;
 	}
-	
 	
 	// 상세보기 /usre/hong
 	@GetMapping("/user/{username}")
